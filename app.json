@@ -1,0 +1,37 @@
+{
+  "expo": {
+    "name": "Ortahisar Şehir Rehberi",
+    "slug": "ortahisar-sehir-rehberi",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": false,
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.ortahisar.sehirrehberi"
+    },
+    "android": {
+      "package": "com.ortahisar.sehirrehberi",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#FFFFFF"
+      },
+      "edgeToEdgeEnabled": true,
+      "predictiveBackGestureEnabled": false
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "e2010b40-d5d5-4eaf-80e9-1dbe83550bdb"
+      }
+    }
+  }
+}
