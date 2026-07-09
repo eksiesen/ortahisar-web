@@ -192,18 +192,6 @@ export function TransportScreen() {
       userCoordsRef.current = null;
       setShowMyLocation(false);
       showMyLocationRef.current = false;
-
-      if (Platform.OS === 'web') {
-        const msgObj = { type: 'REMOVE_USER_LOCATION' };
-        mapRef.current?.contentWindow?.postMessage(JSON.stringify(msgObj), '*');
-      } else {
-        mapRef.current?.injectJavaScript(`
-          if (window.removeUserLocation) {
-            window.removeUserLocation();
-          }
-          true;
-        `);
-      }
       return;
     }
 
@@ -226,9 +214,6 @@ export function TransportScreen() {
             userCoordsRef.current = { latitude: lat, longitude: lng };
             setShowMyLocation(true);
             showMyLocationRef.current = true;
-
-            const msgObj = { type: 'SHOW_USER_LOCATION', lat, lng };
-            mapRef.current?.contentWindow?.postMessage(JSON.stringify(msgObj), '*');
             setLocationLoading(false);
           },
           (error) => {
@@ -259,13 +244,6 @@ export function TransportScreen() {
       userCoordsRef.current = { latitude: lat, longitude: lng };
       setShowMyLocation(true);
       showMyLocationRef.current = true;
-
-      mapRef.current?.injectJavaScript(`
-        if (window.updateUserLocation) {
-          window.updateUserLocation(${lat}, ${lng});
-        }
-        true;
-      `);
     } catch (error) {
       console.warn('Konum hatası:', error);
       Alert.alert('Hata', "Konum alınamadı.");
@@ -435,7 +413,7 @@ export function TransportScreen() {
         zoomControl: false,
         minZoom: 4,
         maxZoom: 18,
-      }).setView([40.99012075412726, 39.71953620115007], 13); // target focus coordinates
+      }).setView([40.997500, 39.712500], 13); // target focus coordinates
 
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 18,

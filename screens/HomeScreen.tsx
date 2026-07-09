@@ -334,10 +334,9 @@ export function HomeScreen() {
 
   const resetMapView = () => {
     if (Platform.OS === 'web') {
-      mapRef.current?.contentWindow?.postMessage(
-        JSON.stringify({ type: 'RESET_MAP' }),
-        '*'
-      );
+      if (mapRef.current) {
+        mapRef.current.setView([40.998, 39.715], 13, { animate: true });
+      }
     } else {
       mapRef.current?.injectJavaScript(`
         if (window.map) {
@@ -351,10 +350,10 @@ export function HomeScreen() {
   const resetMapViewToHome = () => {
     setSelectedKey('');
     if (Platform.OS === 'web') {
-      mapRef.current?.contentWindow?.postMessage(
-        JSON.stringify({ type: 'RESET_MAP_VIEW' }),
-        '*'
-      );
+      if (mapRef.current) {
+        mapRef.current.closePopup();
+        mapRef.current.setView([40.997500, 39.712500], 13, { animate: true });
+      }
     } else {
       mapRef.current?.injectJavaScript(`
         if (window.map) {
@@ -364,7 +363,7 @@ export function HomeScreen() {
           window.selectPin('');
         }
         if (window.map) {
-          window.map.setView([40.99012075412726, 39.71953620115007], 13, { animate: true });
+          window.map.setView([40.997500, 39.712500], 13, { animate: true });
         }
         true;
       `);
@@ -623,7 +622,7 @@ export function HomeScreen() {
         zoomControl: false,
         minZoom: 4,
         maxZoom: 18,
-      }).setView([40.99012075412726, 39.71953620115007], 13);
+      }).setView([40.997500, 39.712500], 13);
 
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 18,
