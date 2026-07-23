@@ -130,7 +130,7 @@ export function ParksScreen({
           styles.scroll,
           { paddingBottom: tabBarHeight + 28 },
         ]}
-        showsVerticalScrollIndicator={false}
+        showsVerticalScrollIndicator={true}
         keyboardShouldPersistTaps="handled"
         onScroll={(event) => {
           const offsetY = event.nativeEvent.contentOffset.y;

@@ -72,7 +72,7 @@ export function ParkDetailScreen({
           styles.scroll,
           { paddingBottom: tabBarHeight + 28 },
         ]}
-        showsVerticalScrollIndicator={false}
+        showsVerticalScrollIndicator={true}
         keyboardShouldPersistTaps="handled"
         onScroll={(event) => {
           const offsetY = event.nativeEvent.contentOffset.y;
@@ -161,16 +161,16 @@ export function ParkDetailScreen({
               <Text style={styles.howText}>{park.transport.dolmusText}</Text>
               <Pressable
                 accessibilityRole="button"
-                accessibilityLabel="Dolmuş Bilgilerine Git"
+                accessibilityLabel="Haritada Gör"
                 onPress={() =>
-                  navigation.navigate('Transport', { detailKey: 'dolmus' })
+                  navigation.navigate('Home')
                 }
                 style={({ pressed }) => [
                   styles.secondaryBtn,
                   pressed && { opacity: 0.92 },
                 ]}
               >
-                <Text style={styles.secondaryBtnText}>Dolmuş Bilgilerine Git</Text>
+                <Text style={styles.secondaryBtnText}>Haritada Gör</Text>
                 <Ionicons
                   name="chevron-forward"
                   size={18}

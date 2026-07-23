@@ -5,7 +5,6 @@ import { DeviceEventEmitter } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { HomeScreen } from '../screens/HomeScreen';
 import { PlacesTabScreen } from '../screens/PlacesTabScreen';
-import { TransportScreen } from '../screens/TransportScreen';
 import { colors } from '../theme';
 import type { RootTabParamList } from './types';
 
@@ -57,22 +56,6 @@ export function MainTabs() {
             if (navigation.isFocused()) {
               e.preventDefault();
               DeviceEventEmitter.emit('tabPress_Home');
-            }
-          },
-        })}
-      />
-      <Tab.Screen
-        name="Transport"
-        component={TransportScreen}
-        options={{
-          title: 'Ulaşım',
-          tabBarIcon: tabIcon('bus'),
-        }}
-        listeners={({ navigation }) => ({
-          tabPress: (e) => {
-            if (navigation.isFocused()) {
-              e.preventDefault();
-              DeviceEventEmitter.emit('tabPress_Transport');
             }
           },
         })}

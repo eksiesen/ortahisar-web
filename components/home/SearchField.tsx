@@ -9,11 +9,12 @@ interface SearchFieldProps {
   onChangeText: (text: string) => void;
   onClear?: () => void;
   placeholder?: string;
+  style?: any;
 }
 
-export function SearchField({ value, onChangeText, onClear, placeholder }: SearchFieldProps) {
+export function SearchField({ value, onChangeText, onClear, placeholder, style }: SearchFieldProps) {
   return (
-    <View style={[styles.wrap, cardShadow]}>
+    <View style={[styles.wrap, cardShadow, style]}>
       <Ionicons
         name="search"
         size={20}
@@ -49,8 +50,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: colors.surface,
     borderRadius: radius.lg,
-    paddingHorizontal: 16,
-    paddingVertical: 14,
+    paddingHorizontal: 14,
+    paddingVertical: 11,
     marginBottom: 24,
     borderWidth: 1,
     borderColor: colors.border,

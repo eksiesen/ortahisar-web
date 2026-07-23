@@ -11,7 +11,7 @@ export interface SearchItem {
   category: string;
   description: string;
   tags?: readonly string[] | string[];
-  tab: 'Transport' | 'Places';
+  tab: 'Home' | 'Places';
   routeParams: {
     categoryKey?: string;
     detailKey?: string;
@@ -38,32 +38,30 @@ export function normalizeString(str: string): string {
 const TRANSPORT_ITEMS: SearchItem[] = [
   {
     key: 'dolmus',
-    title: 'Dolmuş',
+    title: 'Dolmuş Durakları',
     category: 'Ulaşım',
-    description: 'Kısa mesafe ve merkez çevresi için hızlı paylaşımlı ulaşım.',
-    tags: ['ulasim', 'dolmus', 'minibus', 'tasima'],
-    tab: 'Transport',
-    routeParams: { detailKey: 'dolmus' },
+    description: 'Kısa mesafe ve merkez çevresi için hızlı paylaşımlı ulaşım ve harita durakları.',
+    tags: ['ulasim', 'dolmus', 'minibus', 'tasima', 'durak'],
+    tab: 'Home',
+    routeParams: {},
   },
-
-
   {
     key: 'havalimani',
     title: 'Havalimanı',
     category: 'Ulaşım',
-    description: 'Trabzon Havalimanı ulaşım ve uçuş bilgileri.',
+    description: 'Trabzon Havalimanı ulaşım ve harita konum bilgileri.',
     tags: ['ulasim', 'havalimani', 'havalani', 'ucak', 'ucus'],
-    tab: 'Transport',
-    routeParams: { detailKey: 'havalimani' },
+    tab: 'Home',
+    routeParams: {},
   },
   {
     key: 'havas',
-    title: 'Havaş',
+    title: 'Havaş Servisi',
     category: 'Ulaşım',
     description: 'Havalimanı ile şehir merkezi ve çevre iller arası servis bilgileri.',
     tags: ['ulasim', 'havas', 'servis', 'havalimani', 'havalani'],
-    tab: 'Transport',
-    routeParams: { detailKey: 'havas' },
+    tab: 'Home',
+    routeParams: {},
   },
 ];
 

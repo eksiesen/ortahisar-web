@@ -312,9 +312,11 @@ export function HomeScreen() {
     }
   };
 
+  const DEFAULT_PLACE_CATEGORIES = ['tarihi', 'park', 'manzara', 'muze'];
+
   const [searchQuery, setSearchQuery] = React.useState('');
   const [selectedKey, setSelectedKey] = React.useState<string>('');
-  const [selectedCategories, setSelectedCategories] = React.useState<string[]>([]);
+  const [selectedCategories, setSelectedCategories] = React.useState<string[]>(DEFAULT_PLACE_CATEGORIES);
   const [selectedDolmusLines, setSelectedDolmusLines] = React.useState<string[]>([]);
   const [dolmusSubType, setDolmusSubType] = React.useState<'all' | 'P' | 'T' | 'M'>('all');
   const [dolmusSearchQuery, setDolmusSearchQuery] = React.useState('');
@@ -379,9 +381,9 @@ export function HomeScreen() {
 
   React.useEffect(() => {
     const sub = DeviceEventEmitter.addListener('tabPress_Home', () => {
-      if (selectedKey || selectedCategories.length > 0 || searchQuery !== '') {
+      if (selectedKey || searchQuery !== '') {
         setSelectedKey('');
-        setSelectedCategories([]);
+        setSelectedCategories(DEFAULT_PLACE_CATEGORIES);
         setSearchQuery('');
         resetMapView();
       } else {
@@ -400,13 +402,7 @@ export function HomeScreen() {
   };
 
   const CAROUSEL_POINTS = React.useMemo(() => {
-    let pts = MAP_POINTS.filter((p) => p.detailKey !== '');
-    if (selectedCategories.length > 0) {
-      pts = pts.filter((p) => selectedCategories.includes(p.categoryKey));
-    } else {
-      pts = pts.filter((p) => ['tarihi', 'park', 'manzara', 'muze'].includes(p.categoryKey));
-    }
-    return pts;
+    return MAP_POINTS.filter((p) => p.detailKey !== '' && selectedCategories.includes(p.categoryKey));
   }, [selectedCategories]);
 
   const flatListRef = React.useRef<FlatList<MapPoint>>(null);
@@ -421,9 +417,6 @@ export function HomeScreen() {
 
   const filteredPoints = React.useMemo(() => {
     return MAP_POINTS.filter((point) => {
-      if (selectedCategories.length === 0) {
-        return ['tarihi', 'park', 'manzara', 'muze'].includes(point.categoryKey);
-      }
       if (!selectedCategories.includes(point.categoryKey)) {
         return false;
       }
@@ -512,7 +505,7 @@ export function HomeScreen() {
     // Add new markers
     pointsData.forEach((point) => {
       const isSelected = point.key === selectedKey;
-      
+
       const popupContent = document.createElement('div');
       popupContent.style.fontFamily = 'sans-serif';
       popupContent.style.padding = '6px';
@@ -855,181 +848,74 @@ export function HomeScreen() {
 
   return (
     <View style={[styles.root, { paddingTop: insets.top }]}>
-      <View style={styles.header}>
-        <SearchField
-          value={searchQuery}
-          onChangeText={setSearchQuery}
-          onClear={() => setSearchQuery('')}
-        />
-        {searchQuery.trim().length === 0 && (
-          <View style={styles.topButtonsRow}>
-            <Pressable
-              accessibilityRole="button"
-              accessibilityLabel="Duyurular"
-              onPress={() => handleQuickAccess('duyuru')}
-              style={({ pressed }) => [
-                styles.topBadgeBtn,
-                pressed && { opacity: 0.85 },
-                {
-                  borderColor: selectedKey === 'ortahisar-belediyesi' ? '#EF4444' : colors.border,
-                  borderWidth: selectedKey === 'ortahisar-belediyesi' ? 2 : 1,
-                }
-              ]}
-            >
-              <Ionicons
-                name="megaphone-outline"
-                size={15}
-                color={colors.primary}
-              />
-              <Text style={styles.topBadgeBtnText}>Duyurular</Text>
-            </Pressable>
-
-            <Pressable
-              accessibilityRole="button"
-              accessibilityLabel="Haberler"
-              onPress={() => Linking.openURL('https://www.trabzonortahisar.bel.tr/haberler')}
-              style={({ pressed }) => [
-                styles.topBadgeBtn,
-                pressed && { opacity: 0.85 },
-                {
-                  borderColor: selectedKey === 'ortahisar-belediyesi' ? '#EF4444' : colors.border,
-                  borderWidth: selectedKey === 'ortahisar-belediyesi' ? 2 : 1,
-                }
-              ]}
-            >
-              <Ionicons
-                name="newspaper-outline"
-                size={15}
-                color={colors.primary}
-              />
-              <Text style={styles.topBadgeBtnText}>Haberler</Text>
-            </Pressable>
-
-            <Pressable
-              accessibilityRole="button"
-              accessibilityLabel="Web Sitemiz"
-              onPress={() => Linking.openURL('https://www.trabzonortahisar.bel.tr/')}
-              style={({ pressed }) => [
-                styles.topBadgeBtn,
-                pressed && { opacity: 0.85 },
-                {
-                  borderColor: selectedKey === 'ortahisar-belediyesi' ? '#EF4444' : colors.border,
-                  borderWidth: selectedKey === 'ortahisar-belediyesi' ? 2 : 1,
-                }
-              ]}
-            >
-              <Ionicons
-                name="globe-outline"
-                size={15}
-                color={colors.primary}
-              />
-              <Text style={styles.topBadgeBtnText}>Web Sitemiz</Text>
-            </Pressable>
-          </View>
-        )}
-        {searchQuery.trim().length === 0 && (
-          <View style={[
-            styles.socialMediaRow,
-            {
-              borderColor: selectedKey === 'ortahisar-belediyesi' ? '#EF4444' : 'transparent',
-              borderWidth: selectedKey === 'ortahisar-belediyesi' ? 1.5 : 0,
-              borderRadius: 8,
-              padding: selectedKey === 'ortahisar-belediyesi' ? 4 : 0,
-            }
-          ]}>
-            <Pressable
-              accessibilityRole="button"
-              accessibilityLabel="Ortahisar Belediyesi Facebook Sayfası"
-              onPress={() => Linking.openURL('https://www.facebook.com/trbortahisarbel?mibextid=ZbWKwL')}
-              style={({ pressed }) => [styles.socialIconBtn, pressed && { opacity: 0.75, transform: [{ scale: 0.95 }] }]}
-            >
-              <Ionicons name="logo-facebook" size={20} color="#1877F2" />
-            </Pressable>
-
-            <Pressable
-              accessibilityRole="button"
-              accessibilityLabel="Ortahisar Belediyesi X Hesabı"
-              onPress={() => Linking.openURL('https://x.com/trbortahisarbel')}
-              style={({ pressed }) => [styles.socialIconBtn, pressed && { opacity: 0.75, transform: [{ scale: 0.95 }] }]}
-            >
-              <Ionicons name="logo-twitter" size={20} color="#000000" />
-            </Pressable>
-
-            <Pressable
-              accessibilityRole="button"
-              accessibilityLabel="Ortahisar Belediyesi Instagram Hesabı"
-              onPress={() => Linking.openURL('https://www.instagram.com/trortahisarbel/')}
-              style={({ pressed }) => [styles.socialIconBtn, pressed && { opacity: 0.75, transform: [{ scale: 0.95 }] }]}
-            >
-              <Ionicons name="logo-instagram" size={20} color="#E1306C" />
-            </Pressable>
-
-            <Pressable
-              accessibilityRole="button"
-              accessibilityLabel="Ortahisar Belediyesi YouTube Kanalı"
-              onPress={() => Linking.openURL('https://www.youtube.com/channel/UCspHo01bOgAIRfS8HXPwSLg?reload=9')}
-              style={({ pressed }) => [styles.socialIconBtn, pressed && { opacity: 0.75, transform: [{ scale: 0.95 }] }]}
-            >
-              <Ionicons name="logo-youtube" size={20} color="#FF0000" />
-            </Pressable>
-          </View>
-        )}
-      </View>
-
       {searchQuery.trim().length > 0 ? (
-        <ScrollView style={styles.scroll} keyboardShouldPersistTaps="handled">
-          <View style={[styles.searchResultsContainer, cardShadow]}>
-            {filteredResults.length > 0 ? (
-              <View style={styles.resultsList}>
-                {filteredResults.map((item, idx) => (
-                  <View key={`${item.tab}-${item.key}`}>
-                    {idx > 0 && <View style={styles.resultDivider} />}
-                    <Pressable
-                      accessibilityRole="button"
-                      accessibilityLabel={`${item.title}, Kategori: ${item.category}`}
-                      onPress={() => {
-                        setSearchQuery('');
-                        navigation.navigate(item.tab as any, item.routeParams as any);
-                      }}
-                      style={({ pressed }) => [
-                        styles.resultCard,
-                        pressed && styles.resultCardPressed,
-                      ]}
-                    >
-                      <View style={styles.resultHeader}>
-                        <Text style={styles.resultTitle}>{item.title}</Text>
-                        <View style={styles.categoryBadge}>
-                          <Text style={styles.categoryBadgeText}>
-                            {item.category}
-                          </Text>
-                        </View>
-                      </View>
-                      <Text style={styles.resultDesc} numberOfLines={2}>
-                        {item.description}
-                      </Text>
-                    </Pressable>
-                  </View>
-                ))}
-              </View>
-            ) : (
-              <View style={styles.noResultsCard}>
-                <Ionicons
-                  name="search-outline"
-                  size={24}
-                  color={colors.textMuted}
+        <View style={{ flex: 1 }}>
+          <View style={styles.header}>
+            <View style={styles.searchHeaderRow}>
+              <View style={styles.searchFieldWrapper}>
+                <SearchField
+                  value={searchQuery}
+                  onChangeText={setSearchQuery}
+                  onClear={() => setSearchQuery('')}
+                  style={{ marginBottom: 0 }}
                 />
-                <Text style={styles.noResultsText}>Sonuç bulunamadı</Text>
               </View>
-            )}
+            </View>
           </View>
-        </ScrollView>
+          <ScrollView style={styles.scroll} keyboardShouldPersistTaps="handled">
+            <View style={[styles.searchResultsContainer, cardShadow]}>
+              {filteredResults.length > 0 ? (
+                <View style={styles.resultsList}>
+                  {filteredResults.map((item, idx) => (
+                    <View key={`${item.tab}-${item.key}`}>
+                      {idx > 0 && <View style={styles.resultDivider} />}
+                      <Pressable
+                        accessibilityRole="button"
+                        accessibilityLabel={`${item.title}, Kategori: ${item.category}`}
+                        onPress={() => {
+                          setSearchQuery('');
+                          navigation.navigate(item.tab as any, item.routeParams as any);
+                        }}
+                        style={({ pressed }) => [
+                          styles.resultCard,
+                          pressed && styles.resultCardPressed,
+                        ]}
+                      >
+                        <View style={styles.resultHeader}>
+                          <Text style={styles.resultTitle}>{item.title}</Text>
+                          <View style={styles.categoryBadge}>
+                            <Text style={styles.categoryBadgeText}>
+                              {item.category}
+                            </Text>
+                          </View>
+                        </View>
+                        <Text style={styles.resultDesc} numberOfLines={2}>
+                          {item.description}
+                        </Text>
+                      </Pressable>
+                    </View>
+                  ))}
+                </View>
+              ) : (
+                <View style={styles.noResultsCard}>
+                  <Ionicons
+                    name="search-outline"
+                    size={24}
+                    color={colors.textMuted}
+                  />
+                  <Text style={styles.noResultsText}>Sonuç bulunamadı</Text>
+                </View>
+              )}
+            </View>
+          </ScrollView>
+        </View>
       ) : (
         <ScrollView
           ref={scrollViewRef}
           style={{ flex: 1 }}
-          showsVerticalScrollIndicator={false}
+          showsVerticalScrollIndicator={true}
           contentContainerStyle={{
-            paddingHorizontal: 20,
+            paddingHorizontal: 28,
             paddingBottom: tabBarHeight + 5,
             flexGrow: 1,
           }}
@@ -1037,6 +923,132 @@ export function HomeScreen() {
           nestedScrollEnabled={true}
         >
           <View style={{ flex: 1 }}>
+            <View style={styles.header}>
+              <View style={styles.searchHeaderRow}>
+                <View style={styles.searchFieldWrapper}>
+                  <SearchField
+                    value={searchQuery}
+                    onChangeText={setSearchQuery}
+                    onClear={() => setSearchQuery('')}
+                    style={{ marginBottom: 0 }}
+                  />
+                </View>
+                {searchQuery.trim().length === 0 && (
+                  <View style={[
+                    styles.socialMediaRow,
+                    {
+                      borderColor: selectedKey === 'ortahisar-belediyesi' ? '#EF4444' : 'transparent',
+                      borderWidth: selectedKey === 'ortahisar-belediyesi' ? 1.5 : 0,
+                      borderRadius: 8,
+                      padding: selectedKey === 'ortahisar-belediyesi' ? 4 : 0,
+                    }
+                  ]}>
+                    <Pressable
+                      accessibilityRole="button"
+                      accessibilityLabel="Ortahisar Belediyesi Facebook Sayfası"
+                      onPress={() => Linking.openURL('https://www.facebook.com/trbortahisarbel?mibextid=ZbWKwL')}
+                      style={({ pressed }) => [styles.socialIconBtn, pressed && { opacity: 0.75, transform: [{ scale: 0.95 }] }]}
+                    >
+                      <Ionicons name="logo-facebook" size={20} color="#1877F2" />
+                    </Pressable>
+
+                    <Pressable
+                      accessibilityRole="button"
+                      accessibilityLabel="Ortahisar Belediyesi X Hesabı"
+                      onPress={() => Linking.openURL('https://x.com/trbortahisarbel')}
+                      style={({ pressed }) => [styles.socialIconBtn, pressed && { opacity: 0.75, transform: [{ scale: 0.95 }] }]}
+                    >
+                      <Ionicons name="logo-x" size={18} color="#000000" />
+                    </Pressable>
+
+                    <Pressable
+                      accessibilityRole="button"
+                      accessibilityLabel="Ortahisar Belediyesi Instagram Hesabı"
+                      onPress={() => Linking.openURL('https://www.instagram.com/trortahisarbel/')}
+                      style={({ pressed }) => [styles.socialIconBtn, pressed && { opacity: 0.75, transform: [{ scale: 0.95 }] }]}
+                    >
+                      <Ionicons name="logo-instagram" size={20} color="#E1306C" />
+                    </Pressable>
+
+                    <Pressable
+                      accessibilityRole="button"
+                      accessibilityLabel="Ortahisar Belediyesi YouTube Kanalı"
+                      onPress={() => Linking.openURL('https://www.youtube.com/channel/UCspHo01bOgAIRfS8HXPwSLg?reload=9')}
+                      style={({ pressed }) => [styles.socialIconBtn, pressed && { opacity: 0.75, transform: [{ scale: 0.95 }] }]}
+                    >
+                      <Ionicons name="logo-youtube" size={20} color="#FF0000" />
+                    </Pressable>
+                  </View>
+                )}
+              </View>
+
+              {searchQuery.trim().length === 0 && (
+                <View style={styles.topButtonsRow}>
+                  <Pressable
+                    accessibilityRole="button"
+                    accessibilityLabel="Duyurular"
+                    onPress={() => handleQuickAccess('duyuru')}
+                    style={({ pressed }) => [
+                      styles.topBadgeBtn,
+                      pressed && { opacity: 0.85 },
+                      {
+                        borderColor: selectedKey === 'ortahisar-belediyesi' ? '#EF4444' : colors.border,
+                        borderWidth: selectedKey === 'ortahisar-belediyesi' ? 2 : 1,
+                      }
+                    ]}
+                  >
+                    <Ionicons
+                      name="megaphone-outline"
+                      size={15}
+                      color={colors.primary}
+                    />
+                    <Text style={styles.topBadgeBtnText}>Duyurular</Text>
+                  </Pressable>
+
+                  <Pressable
+                    accessibilityRole="button"
+                    accessibilityLabel="Haberler"
+                    onPress={() => Linking.openURL('https://www.trabzonortahisar.bel.tr/haberler')}
+                    style={({ pressed }) => [
+                      styles.topBadgeBtn,
+                      pressed && { opacity: 0.85 },
+                      {
+                        borderColor: selectedKey === 'ortahisar-belediyesi' ? '#EF4444' : colors.border,
+                        borderWidth: selectedKey === 'ortahisar-belediyesi' ? 2 : 1,
+                      }
+                    ]}
+                  >
+                    <Ionicons
+                      name="newspaper-outline"
+                      size={15}
+                      color={colors.primary}
+                    />
+                    <Text style={styles.topBadgeBtnText}>Haberler</Text>
+                  </Pressable>
+
+                  <Pressable
+                    accessibilityRole="button"
+                    accessibilityLabel="Web Sitemiz"
+                    onPress={() => Linking.openURL('https://www.trabzonortahisar.bel.tr/')}
+                    style={({ pressed }) => [
+                      styles.topBadgeBtn,
+                      pressed && { opacity: 0.85 },
+                      {
+                        borderColor: selectedKey === 'ortahisar-belediyesi' ? '#EF4444' : colors.border,
+                        borderWidth: selectedKey === 'ortahisar-belediyesi' ? 2 : 1,
+                      }
+                    ]}
+                  >
+                    <Ionicons
+                      name="globe-outline"
+                      size={15}
+                      color={colors.primary}
+                    />
+                    <Text style={styles.topBadgeBtnText}>Web Sitemiz</Text>
+                  </Pressable>
+                </View>
+              )}
+            </View>
             <View style={[styles.mapWrapper, cardShadow]}>
               {Platform.OS === 'web' ? (
                 <div ref={mapContainerRef} style={{ width: '100%', height: '100%', borderRadius: 16, overflow: 'hidden' }} />
@@ -1088,8 +1100,26 @@ export function HomeScreen() {
 
 
             <View style={[styles.carouselWrapper, { marginBottom: 16 }]}>
+              <FlatList
+                ref={flatListRef}
+                data={CAROUSEL_POINTS}
+                renderItem={renderCarouselItem}
+                keyExtractor={(item) => item.key}
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                contentContainerStyle={styles.carouselContainer}
+                snapToInterval={CARD_WIDTH + CARD_GAP}
+                decelerationRate="fast"
+                onMomentumScrollEnd={onMomentumScrollEnd}
+                getItemLayout={(data, index) => ({
+                  length: CARD_WIDTH + CARD_GAP,
+                  offset: (CARD_WIDTH + CARD_GAP) * index,
+                  index,
+                })}
+              />
+
               {selectedCategories.length === 1 && selectedCategories.includes('dolmus') && (
-                <View style={styles.dolmusLegend}>
+                <View style={[styles.dolmusLegend, { marginTop: 12 }]}>
                   <Text style={styles.dolmusLegendText}>
                     ℹ️ <Text style={{ fontWeight: 'bold', color: '#1E3A8A' }}>P:</Text> Postane | <Text style={{ fontWeight: 'bold', color: '#2563EB' }}>T:</Text> Tanjant | <Text style={{ fontWeight: 'bold', color: '#38BDF8' }}>M:</Text> Moloz
                   </Text>
@@ -1100,7 +1130,7 @@ export function HomeScreen() {
                 <ScrollView
                   horizontal
                   showsHorizontalScrollIndicator={false}
-                  contentContainerStyle={styles.subTabContainer}
+                  contentContainerStyle={[styles.subTabContainer, { marginTop: selectedCategories.length === 1 ? 8 : 12 }]}
                 >
                   <Pressable onPress={() => setDolmusSubType('all')} style={[styles.subTab, dolmusSubType === 'all' && styles.subTabActive]}>
                     <Text style={[styles.subTabText, dolmusSubType === 'all' && styles.subTabTextActive]}>Tümü</Text>
@@ -1187,24 +1217,6 @@ export function HomeScreen() {
                   })}
                 </ScrollView>
               )}
-
-              <FlatList
-                ref={flatListRef}
-                data={CAROUSEL_POINTS}
-                renderItem={renderCarouselItem}
-                keyExtractor={(item) => item.key}
-                horizontal
-                showsHorizontalScrollIndicator={false}
-                contentContainerStyle={styles.carouselContainer}
-                snapToInterval={CARD_WIDTH + CARD_GAP}
-                decelerationRate="fast"
-                onMomentumScrollEnd={onMomentumScrollEnd}
-                getItemLayout={(data, index) => ({
-                  length: CARD_WIDTH + CARD_GAP,
-                  offset: (CARD_WIDTH + CARD_GAP) * index,
-                  index,
-                })}
-              />
             </View>
 
             <View style={styles.infoBox}>
@@ -1222,7 +1234,7 @@ export function HomeScreen() {
                   onPress={() => toggleCategory('tarihi')}
                   style={[
                     styles.legendItem,
-                    { opacity: selectedCategories.length > 0 && !selectedCategories.includes('tarihi') ? 0.4 : 1.0 }
+                    { opacity: selectedCategories.includes('tarihi') ? 1.0 : 0.4 }
                   ]}
                 >
                   <View style={[styles.legendDot, { backgroundColor: CATEGORY_STYLES.tarihi.color }]}>
@@ -1236,7 +1248,7 @@ export function HomeScreen() {
                   onPress={() => toggleCategory('park')}
                   style={[
                     styles.legendItem,
-                    { opacity: selectedCategories.length > 0 && !selectedCategories.includes('park') ? 0.4 : 1.0 }
+                    { opacity: selectedCategories.includes('park') ? 1.0 : 0.4 }
                   ]}
                 >
                   <View style={[styles.legendDot, { backgroundColor: CATEGORY_STYLES.park.color }]}>
@@ -1252,7 +1264,7 @@ export function HomeScreen() {
                   onPress={() => toggleCategory('manzara')}
                   style={[
                     styles.legendItem,
-                    { opacity: selectedCategories.length > 0 && !selectedCategories.includes('manzara') ? 0.4 : 1.0 }
+                    { opacity: selectedCategories.includes('manzara') ? 1.0 : 0.4 }
                   ]}
                 >
                   <View style={[styles.legendDot, { backgroundColor: CATEGORY_STYLES.manzara.color }]}>
@@ -1266,7 +1278,7 @@ export function HomeScreen() {
                   onPress={() => toggleCategory('muze')}
                   style={[
                     styles.legendItem,
-                    { opacity: selectedCategories.length > 0 && !selectedCategories.includes('muze') ? 0.4 : 1.0 }
+                    { opacity: selectedCategories.includes('muze') ? 1.0 : 0.4 }
                   ]}
                 >
                   <View style={[styles.legendDot, { backgroundColor: CATEGORY_STYLES.muze.color }]}>
@@ -1289,7 +1301,7 @@ export function HomeScreen() {
                 onPress={() => toggleCategory('dolmus')}
                 style={[
                   styles.legendItem,
-                  { opacity: selectedCategories.length > 0 && !selectedCategories.includes('dolmus') ? 0.4 : 1.0, justifyContent: 'center' }
+                  { opacity: selectedCategories.includes('dolmus') ? 1.0 : 0.4, justifyContent: 'center' }
                 ]}
               >
                 <View style={[styles.legendDot, { backgroundColor: CATEGORY_STYLES.dolmus.color }]}>
@@ -1317,17 +1329,29 @@ const styles = StyleSheet.create({
     backgroundColor: '#F3F4F6',
   },
   header: {
-    paddingHorizontal: 20,
+    paddingHorizontal: 0,
     paddingTop: 12,
     backgroundColor: '#F3F4F6',
+  },
+  searchHeaderRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 14,
+    marginHorizontal: 20,
+    marginBottom: 14,
+  },
+  searchFieldWrapper: {
+    width: '70%',
   },
   topButtonsRow: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
     gap: 8,
+    marginHorizontal: 20,
     marginBottom: 16,
-    marginTop: 4,
+    marginTop: 0,
   },
   topBadgeBtn: {
     flex: 1,
@@ -1352,8 +1376,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    gap: 16,
-    marginBottom: 16,
+    gap: 14,
+    marginBottom: 0,
   },
   socialIconBtn: {
     width: 40,
@@ -1379,7 +1403,8 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   mapWrapper: {
-    minHeight: 280,
+    height: 540,
+    minHeight: 540,
     backgroundColor: '#E5E7EB',
     borderRadius: radius.xl,
     borderWidth: 1,
@@ -1399,31 +1424,36 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 16,
     right: 16,
-    backgroundColor: 'rgba(255,255,255,0.95)',
+    backgroundColor: '#FFFFFF',
     borderRadius: radius.md,
     borderWidth: 1,
     borderColor: '#D1D5DB',
     overflow: 'hidden',
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.15,
-    shadowRadius: 3,
-    elevation: 4,
-    zIndex: 10,
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+    elevation: 10,
+    zIndex: 9999,
   },
   locationBtn: {
     position: 'absolute',
     top: 16,
     right: 16,
-    width: 36,
-    height: 36,
-    borderRadius: 18,
-    backgroundColor: 'rgba(255,255,255,0.95)',
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    backgroundColor: '#FFFFFF',
     alignItems: 'center',
     justifyContent: 'center',
     borderWidth: 1,
     borderColor: '#D1D5DB',
-    zIndex: 10,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+    elevation: 10,
+    zIndex: 9999,
   },
   zoomBtn: {
     width: 34,
@@ -1438,9 +1468,11 @@ const styles = StyleSheet.create({
   },
   carouselWrapper: {
     marginTop: 4,
+    marginHorizontal: 20,
+    overflow: 'hidden',
   },
   carouselContainer: {
-    paddingHorizontal: 20,
+    paddingHorizontal: 0,
     paddingBottom: 2,
   },
   carouselCard: {
@@ -1511,7 +1543,7 @@ const styles = StyleSheet.create({
     fontWeight: '700',
   },
   scroll: {
-    paddingHorizontal: 20,
+    paddingHorizontal: 28,
     flex: 1,
   },
   searchResultsContainer: {

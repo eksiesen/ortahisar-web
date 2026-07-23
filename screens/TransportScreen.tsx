@@ -114,7 +114,7 @@ export function TransportScreen() {
   const tabBarHeight = useBottomTabBarHeight();
   const navigation =
     useNavigation<BottomTabNavigationProp<RootTabParamList>>();
-  const route = useRoute<RouteProp<RootTabParamList, 'Transport'>>();
+  const route = useRoute<any>();
   const [detailKey, setDetailKey] = React.useState<TransportDetailKey>(null);
   const [locationLoading, setLocationLoading] = React.useState(false);
   const lastNavTriggerRef = React.useRef<number>(0);

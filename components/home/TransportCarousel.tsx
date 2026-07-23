@@ -19,7 +19,7 @@ export function TransportCarousel() {
       {TRANSPORT_QUICK.map((item, index) => (
         <Pressable
           key={item.key}
-          onPress={() => navigation.navigate('Transport', { detailKey: item.key })}
+          onPress={() => navigation.navigate('Home')}
           style={({ pressed }) => [
             styles.card,
             { backgroundColor: CARD_BG[index % CARD_BG.length] },

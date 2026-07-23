@@ -141,7 +141,7 @@ export function PlacesTabScreen() {
             styles.scroll,
             { paddingBottom: tabBarHeight + 5, flexGrow: 1 },
           ]}
-          showsVerticalScrollIndicator={false}
+          showsVerticalScrollIndicator={true}
         >
           <View style={{ flex: 1 }}>
             <View style={styles.hero}>
