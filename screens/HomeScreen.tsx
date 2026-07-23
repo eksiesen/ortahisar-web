@@ -217,7 +217,7 @@ export const MAP_POINTS: MapPoint[] = [
     category: 'İdari Merkez',
     categoryKey: 'tarihi',
     detailKey: '', // Detay sayfası olmadığı için boş bırakıyoruz, harita kodunda çökme yapmaz
-    image: require('../assets/places/faroz-sahil.jpg'), // Çökme olmaması için mevcut bir görseli bağladık
+    image: require('../assets/places/ortahisar.jpg'),
     tags: ['Belediye', 'Yönetim', 'Merkez'],
     lat: 41.006969630295956,
     lng: 39.71941385810829
@@ -450,6 +450,24 @@ export function HomeScreen() {
         else if (point.key.startsWith('moloz-')) pointColor = '#38BDF8';
       }
 
+      let imageUrl: string | undefined = undefined;
+      if (point.image) {
+        try {
+          if (typeof point.image === 'string') {
+            imageUrl = point.image;
+          } else if (typeof point.image === 'object' && point.image !== null && typeof (point.image as any).default === 'string') {
+            imageUrl = (point.image as any).default;
+          } else if (typeof point.image === 'object' && point.image !== null && typeof (point.image as any).uri === 'string') {
+            imageUrl = (point.image as any).uri;
+          } else {
+            const resolved = Image.resolveAssetSource(point.image);
+            imageUrl = resolved?.uri;
+          }
+        } catch (e) {
+          imageUrl = undefined;
+        }
+      }
+
       return {
         key: point.key,
         title: point.title,
@@ -459,6 +477,7 @@ export function HomeScreen() {
         svgIcon: SVG_ICONS[style.icon],
         categoryKey: point.categoryKey,
         detailKey: point.detailKey,
+        imageUrl: imageUrl,
       };
     });
   }, [filteredPoints]);
@@ -510,7 +529,8 @@ export function HomeScreen() {
       popupContent.style.fontFamily = 'sans-serif';
       popupContent.style.padding = '6px';
       popupContent.style.textAlign = 'center';
-      popupContent.style.minWidth = '140px';
+      popupContent.style.minWidth = '180px';
+      popupContent.style.maxWidth = '210px';
 
       const titleEl = document.createElement('b');
       titleEl.style.fontSize = '14px';
@@ -519,6 +539,19 @@ export function HomeScreen() {
       titleEl.style.marginBottom = '8px';
       titleEl.textContent = point.title;
       popupContent.appendChild(titleEl);
+
+      if (point.imageUrl) {
+        const imgEl = document.createElement('img');
+        imgEl.src = point.imageUrl;
+        imgEl.alt = point.title;
+        imgEl.style.width = '100%';
+        imgEl.style.height = '130px';
+        imgEl.style.objectFit = 'cover';
+        imgEl.style.borderRadius = '8px';
+        imgEl.style.marginBottom = '10px';
+        imgEl.style.display = 'block';
+        popupContent.appendChild(imgEl);
+      }
 
       const btnEl = document.createElement('button');
       btnEl.style.backgroundColor = '#3B82F6';
