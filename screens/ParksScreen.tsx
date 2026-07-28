@@ -98,6 +98,21 @@ Alanımızda 10 adet çatısı cam kaplı pergola bulunmaktadir. Alanımızda 5 
       dolmusText: 'Erdoğdu dolmuşları kullanılabilir.',
     },
   },
+  {
+    key: 'engelsiz-yasam-merkezi',
+    title: 'Engelsiz Yaşam Merkezi',
+    description: `Özel gereksinimli bireyler için sosyal ve kültürel yaşam parkı`,
+    shortInfo: `Ortahisar Belediyesi tarafından özel gereksinimli bireylerin sosyal ve kültürel hayata katılımını sağlamak ve çeşitli etkinlikler yoluyla yeteneklerini geliştirmek amacıyla hayata geçirdiği bir engelsiz yaşam parkıdır.`,
+    tags: ['Park', 'Engelsiz Yaşam', 'Sosyal', 'Ortahisar'],
+    image: require('../assets/places/engelsiz.jpg'),
+    mapUrl: 'https://maps.google.com/?q=41.00424958922368,39.727670274476786',
+    transport: {
+      kind: 'dolmus',
+      dolmusText: 'Şehir içi dolmuşlar ile ulaşım sağlanabilir.',
+    },
+    workHours: '24 saat açık',
+    entranceFee: 'Ücretsiz',
+  },
 ] as const;
 
 export function ParksScreen({

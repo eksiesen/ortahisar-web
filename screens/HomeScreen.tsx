@@ -141,6 +141,17 @@ export const MAP_POINTS: MapPoint[] = [
     lat: 40.991890755934165,
     lng: 39.70669495894049,
   },
+  {
+    key: 'engelsiz-yasam-merkezi',
+    title: 'Engelsiz Yaşam Merkezi',
+    category: 'Parklar',
+    categoryKey: 'park',
+    detailKey: 'engelsiz-yasam-merkezi',
+    image: require('../assets/places/engelsiz.jpg'),
+    tags: ['Park', 'Engelsiz Yaşam', 'Sosyal'],
+    lat: 41.00424958922368,
+    lng: 39.727670274476786,
+  },
 
   // --- TARİHİ YERLER ---
 
@@ -223,56 +234,7 @@ export const MAP_POINTS: MapPoint[] = [
     lng: 39.71941385810829
   },
 
-  // --- DOLMUŞ DURAKLARI ---
-  { key: 'p-aydinlikevler', title: 'Postane - Aydınlıkevler', category: 'Dolmuş Durakları', categoryKey: 'dolmus', detailKey: '', image: null, tags: [], lat: 41.00694023127856, lng: 39.72396549223134 },
-  { key: 'p-besirli', title: 'Postane - Beşirli', category: 'Dolmuş Durakları', categoryKey: 'dolmus', detailKey: '', image: null, tags: [], lat: 41.00703738683742, lng: 39.72422298429274 },
-  { key: 'p-camlik', title: 'Postane - Çamlık', category: 'Dolmuş Durakları', categoryKey: 'dolmus', detailKey: '', image: null, tags: [], lat: 41.00630096403004, lng: 39.72431295917866 },
-  { key: 'p-kurucesme', title: 'Postane - Kuruçeşme', category: 'Dolmuş Durakları', categoryKey: 'dolmus', detailKey: '', image: null, tags: [], lat: 41.00638192779012, lng: 39.72450607823613 },
-  { key: 'p-karsiyaka', title: 'Postane - Karşıyaka', category: 'Dolmuş Durakları', categoryKey: 'dolmus', detailKey: '', image: null, tags: [], lat: 41.006479084173115, lng: 39.72474211262841 },
-  { key: 'p-yesiltepe', title: 'Postane - Yeşiltepe', category: 'Dolmuş Durakları', categoryKey: 'dolmus', detailKey: '', image: null, tags: [], lat: 41.00648509643725, lng: 39.72499612478102 },
-  { key: 'p-yenimahalle', title: 'Postane - Yenimahalle', category: 'Dolmuş Durakları', categoryKey: 'dolmus', detailKey: '', image: null, tags: [], lat: 41.00653367456364, lng: 39.72505506711441 },
-  { key: 'p-bahcecik', title: 'Postane - Bahçecik', category: 'Dolmuş Durakları', categoryKey: 'dolmus', detailKey: '', image: null, tags: [], lat: 41.00658225267422, lng: 39.725237397800925 },
-  { key: 'p-catak', title: 'Postane - Çatak', category: 'Dolmuş Durakları', categoryKey: 'dolmus', detailKey: '', image: null, tags: [], lat: 41.00630697629395, lng: 39.724716648074455 },
-  { key: 'p-erdogdu', title: 'Postane - Erdoğdu Camiyanı', category: 'Dolmuş Durakları', categoryKey: 'dolmus', detailKey: '', image: null, tags: [], lat: 41.0063069763029, lng: 39.724939924776585 },
-  { key: 'p-kurankursu', title: 'Postane - Kurankursu', category: 'Dolmuş Durakları', categoryKey: 'dolmus', detailKey: '', image: null, tags: [], lat: 41.00638794006531, lng: 39.725030994112934 },
-  { key: 't-yenicuma', title: 'Tanjant - Yenicuma', category: 'Dolmuş Durakları', categoryKey: 'dolmus', detailKey: '', image: null, tags: [], lat: 41.00390886029602, lng: 39.731202000733916 },
-  { key: 't-boztepe', title: 'Tanjant - Boztepe', category: 'Dolmuş Durakları', categoryKey: 'dolmus', detailKey: '', image: null, tags: [], lat: 41.003733139772066, lng: 39.73111617004029 },
-  { key: 't-yesiltepe', title: 'Tanjant - Yeşiltepe', category: 'Dolmuş Durakları', categoryKey: 'dolmus', detailKey: '', image: null, tags: [], lat: 41.003947345862244, lng: 39.731609696495966 },
-  { key: 't-kurankursu', title: 'Tanjant - Kurankursu', category: 'Dolmuş Durakları', categoryKey: 'dolmus', detailKey: '', image: null, tags: [], lat: 41.00393115252039, lng: 39.73173844254546 },
-  { key: 't-degirmendere', title: 'Tanjant - Değirmendere', category: 'Dolmuş Durakları', categoryKey: 'dolmus', detailKey: '', image: null, tags: [], lat: 41.00383399235108, lng: 39.731738442532716 },
-  { key: 't-yenimahalle', title: 'Tanjant - Yenimahalle', category: 'Dolmuş Durakları', categoryKey: 'dolmus', detailKey: '', image: null, tags: [], lat: 41.00368825190336, lng: 39.73171698487232 },
-  { key: 't-caglayan', title: 'Tanjant - Çağlayan', category: 'Dolmuş Durakları', categoryKey: 'dolmus', detailKey: '', image: null, tags: [], lat: 41.00347773733897, lng: 39.73165261183078 },
-  { key: 't-ktu', title: 'Tanjant - KTÜ', category: 'Dolmuş Durakları', categoryKey: 'dolmus', detailKey: '', image: null, tags: [], lat: 41.00306344155076, lng: 39.731845730892836 },
-  { key: 't-havalimani', title: 'Tanjant - Havalimanı', category: 'Dolmuş Durakları', categoryKey: 'dolmus', detailKey: '', image: null, tags: [], lat: 41.00288942074333, lng: 39.731953019271145 },
-  { key: 't-tip', title: 'Tanjant - Tıp Fakültesi', category: 'Dolmuş Durakları', categoryKey: 'dolmus', detailKey: '', image: null, tags: [], lat: 41.003004243455905, lng: 39.732024388536715 },
-  { key: 't-aydinlikevler', title: 'Tanjant - Aydınlıkevler', category: 'Dolmuş Durakları', categoryKey: 'dolmus', detailKey: '', image: null, tags: [], lat: 41.003902335468496, lng: 39.73167406626473 },
-  { key: 'moloz-fatih', title: 'Moloz - Fatih', category: 'Dolmuş Durakları', categoryKey: 'dolmus', detailKey: '', image: null, tags: [], lat: 41.01061327786868, lng: 39.722575569877826 },
-  // --- MOLOZ KALKIŞLI DURAKLAR ---
-  { key: 'moloz-pinaralti-sayvan', title: 'Moloz - Pınaraltı Sayvan', category: 'Dolmuş Durakları', categoryKey: 'dolmus', detailKey: '', image: null, tags: [], lat: 41.01119588041446, lng: 39.7181466919046 },
-  { key: 'moloz-aktoprak', title: 'Moloz - Aktoprak', category: 'Dolmuş Durakları', categoryKey: 'dolmus', detailKey: '', image: null, tags: [], lat: 41.0110987309658, lng: 39.71801794567291 },
-  { key: 'moloz-karlik', title: 'Moloz - Karlık', category: 'Dolmuş Durakları', categoryKey: 'dolmus', detailKey: '', image: null, tags: [], lat: 41.01119588039435, lng: 39.71806086103921 },
-  { key: 'moloz-gurbulak', title: 'Moloz - Gürbulak', category: 'Dolmuş Durakları', categoryKey: 'dolmus', detailKey: '', image: null, tags: [], lat: 41.01100158141222, lng: 39.718103776499575 },
-  { key: 'moloz-gecit-magmat', title: 'Moloz - Geçit Mağmat', category: 'Dolmuş Durakları', categoryKey: 'dolmus', detailKey: '', image: null, tags: [], lat: 41.0109044317116, lng: 39.71797503039499 },
-  { key: 'moloz-karakaya', title: 'Moloz - Karakaya', category: 'Dolmuş Durakları', categoryKey: 'dolmus', detailKey: '', image: null, tags: [], lat: 41.01064536509651, lng: 39.71797503027523 },
-  { key: 'moloz-akkaya', title: 'Moloz - Akkaya', category: 'Dolmuş Durakları', categoryKey: 'dolmus', detailKey: '', image: null, tags: [], lat: 41.01074251515645, lng: 39.71801794565265 },
-  { key: 'moloz-subasi', title: 'Moloz - Subaşı', category: 'Dolmuş Durakları', categoryKey: 'dolmus', detailKey: '', image: null, tags: [], lat: 41.01077489852321, lng: 39.718060861044755 },
-  { key: 'moloz-kirechane', title: 'Moloz - Kireçhane', category: 'Dolmuş Durakları', categoryKey: 'dolmus', detailKey: '', image: null, tags: [], lat: 41.01061298164838, lng: 39.717907049706525 },
-  { key: 'moloz-yenikoy-ugurlu', title: 'Moloz - Yeniköy Uğurlu', category: 'Dolmuş Durakları', categoryKey: 'dolmus', detailKey: '', image: null, tags: [], lat: 41.0103539139439, lng: 39.71808216105399 },
-  { key: 'moloz-agilli', title: 'Moloz - Aığıllı', category: 'Dolmuş Durakları', categoryKey: 'dolmus', detailKey: '', image: null, tags: [], lat: 41.01090443170341, lng: 39.718404183829996 },
-  { key: 'moloz-dogancay', title: 'Moloz - Doğançay', category: 'Dolmuş Durakları', categoryKey: 'dolmus', detailKey: '', image: null, tags: [], lat: 41.010904431690896, lng: 39.71836126852998 },
-  { key: 'moloz-bahcecik', title: 'Moloz - Bahçecik', category: 'Dolmuş Durakları', categoryKey: 'dolmus', detailKey: '', image: null, tags: [], lat: 41.01105045238021, lng: 39.72318795037495 },
-  { key: 'moloz-besirli', title: 'Moloz - Beşirli', category: 'Dolmuş Durakları', categoryKey: 'dolmus', detailKey: '', image: null, tags: [], lat: 41.01095330274293, lng: 39.72294123135833 },
-  { key: 'moloz-yenimahalle', title: 'Moloz - Yenimahalle', category: 'Dolmuş Durakları', categoryKey: 'dolmus', detailKey: '', image: null, tags: [], lat: 41.01071042801193, lng: 39.72276606601601 },
-  { key: 'moloz-degirmendere', title: 'Moloz - Değirmendere', category: 'Dolmuş Durakları', categoryKey: 'dolmus', detailKey: '', image: null, tags: [], lat: 41.010856238906044, lng: 39.723359556390164 },
-  { key: 'moloz-karsiyaka', title: 'Moloz - Karşıyaka', category: 'Dolmuş Durakları', categoryKey: 'dolmus', detailKey: '', image: null, tags: [], lat: 41.01075575748531, lng: 39.72327372418408 },
-  { key: 'moloz-aydinlikevler', title: 'Moloz - Aydınlıkevler', category: 'Dolmuş Durakları', categoryKey: 'dolmus', detailKey: '', image: null, tags: [], lat: 41.01072764882014, lng: 39.723295689209294 },
-  { key: 'moloz-yesiltepe', title: 'Moloz - Yeşiltepe', category: 'Dolmuş Durakları', categoryKey: 'dolmus', detailKey: '', image: null, tags: [], lat: 41.01079138635507, lng: 39.72313307738533 },
-  { key: 'moloz-camlik', title: 'Moloz - Çamlık', category: 'Dolmuş Durakları', categoryKey: 'dolmus', detailKey: '', image: null, tags: [], lat: 41.010783376474485, lng: 39.723649234964675 },
-  { key: 'moloz-kurucesme', title: 'Moloz - Kuruçeşme', category: 'Dolmuş Durakları', categoryKey: 'dolmus', detailKey: '', image: null, tags: [], lat: 41.010750993145656, lng: 39.7235097600996 },
-  { key: 'moloz-catak', title: 'Moloz - Çatak', category: 'Dolmuş Durakları', categoryKey: 'dolmus', detailKey: '', image: null, tags: [], lat: 41.010564788694694, lng: 39.723423929424015 },
-  { key: 'moloz-camiyani', title: 'Moloz - Camiyanı', category: 'Dolmuş Durakları', categoryKey: 'dolmus', detailKey: '', image: null, tags: [], lat: 41.01057288454504, lng: 39.72335955640349 },
-  { key: 'moloz-caglayan', title: 'Moloz - Çağlayan', category: 'Dolmuş Durakları', categoryKey: 'dolmus', detailKey: '', image: null, tags: [], lat: 41.01044335072484, lng: 39.7235634042647 },
-  { key: 'moloz-yalincak', title: 'Moloz - Yalıncak', category: 'Dolmuş Durakları', categoryKey: 'dolmus', detailKey: '', image: null, tags: [], lat: 41.01033998278301, lng: 39.72345925167443 },
+
 
 
 ];
@@ -317,9 +279,6 @@ export function HomeScreen() {
   const [searchQuery, setSearchQuery] = React.useState('');
   const [selectedKey, setSelectedKey] = React.useState<string>('');
   const [selectedCategories, setSelectedCategories] = React.useState<string[]>(DEFAULT_PLACE_CATEGORIES);
-  const [selectedDolmusLines, setSelectedDolmusLines] = React.useState<string[]>([]);
-  const [dolmusSubType, setDolmusSubType] = React.useState<'all' | 'P' | 'T' | 'M'>('all');
-  const [dolmusSearchQuery, setDolmusSearchQuery] = React.useState('');
   const [isSidebarOpen, setIsSidebarOpen] = React.useState(false);
   const [showMyLocation, setShowMyLocation] = React.useState(false);
   const [userCoords, setUserCoords] = React.useState<{ latitude: number, longitude: number } | null>(null);
@@ -395,12 +354,6 @@ export function HomeScreen() {
     return () => sub.remove();
   }, [selectedKey, selectedCategories, searchQuery]);
 
-  const toggleDolmusLineSelection = (stopKey: string) => {
-    setSelectedDolmusLines(prev =>
-      prev.includes(stopKey) ? prev.filter(k => k !== stopKey) : [...prev, stopKey]
-    );
-  };
-
   const CAROUSEL_POINTS = React.useMemo(() => {
     return MAP_POINTS.filter((p) => p.detailKey !== '' && selectedCategories.includes(p.categoryKey));
   }, [selectedCategories]);
@@ -417,38 +370,14 @@ export function HomeScreen() {
 
   const filteredPoints = React.useMemo(() => {
     return MAP_POINTS.filter((point) => {
-      if (!selectedCategories.includes(point.categoryKey)) {
-        return false;
-      }
-      if (point.categoryKey === 'dolmus') {
-        const toLowerTR = (str: string) => str.replace(/I/g, 'ı').replace(/İ/g, 'i').toLowerCase();
-
-        if (dolmusSearchQuery.trim() !== '') {
-          const query = toLowerTR(dolmusSearchQuery.trim());
-          const titleMatch = toLowerTR(point.title).includes(query);
-          if (!titleMatch) return false;
-        }
-        if (selectedDolmusLines.length > 0) {
-          return selectedDolmusLines.includes(point.key);
-        }
-        if (dolmusSubType === 'P' && !point.key.startsWith('p-')) return false;
-        if (dolmusSubType === 'T' && !point.key.startsWith('t-')) return false;
-        if (dolmusSubType === 'M' && !point.key.startsWith('moloz-')) return false;
-        return true;
-      }
-      return true;
+      return selectedCategories.includes(point.categoryKey);
     });
-  }, [selectedCategories, selectedDolmusLines, dolmusSubType, dolmusSearchQuery]);
+  }, [selectedCategories]);
 
   const pointsData = React.useMemo(() => {
     return filteredPoints.map((point) => {
       const style = CATEGORY_STYLES[point.categoryKey];
-      let pointColor: string = style.color;
-      if (point.categoryKey === 'dolmus') {
-        if (point.key.startsWith('p-')) pointColor = '#1E3A8A';
-        else if (point.key.startsWith('t-')) pointColor = '#2563EB';
-        else if (point.key.startsWith('moloz-')) pointColor = '#38BDF8';
-      }
+      let pointColor: string = style ? style.color : '#3B82F6';
 
       let imageUrl: string | undefined = undefined;
       if (point.image) {
@@ -659,7 +588,6 @@ export function HomeScreen() {
         const target = e.originalEvent.target;
         if (target === container || target.classList.contains('leaflet-container')) {
           setSelectedKey('');
-          setSelectedDolmusLines([]);
         }
       });
 
@@ -1150,116 +1078,9 @@ export function HomeScreen() {
                   index,
                 })}
               />
-
-              {selectedCategories.length === 1 && selectedCategories.includes('dolmus') && (
-                <View style={[styles.dolmusLegend, { marginTop: 12 }]}>
-                  <Text style={styles.dolmusLegendText}>
-                    ℹ️ <Text style={{ fontWeight: 'bold', color: '#1E3A8A' }}>P:</Text> Postane | <Text style={{ fontWeight: 'bold', color: '#2563EB' }}>T:</Text> Tanjant | <Text style={{ fontWeight: 'bold', color: '#38BDF8' }}>M:</Text> Moloz
-                  </Text>
-                </View>
-              )}
-
-              {selectedCategories.includes('dolmus') && (
-                <ScrollView
-                  horizontal
-                  showsHorizontalScrollIndicator={false}
-                  contentContainerStyle={[styles.subTabContainer, { marginTop: selectedCategories.length === 1 ? 8 : 12 }]}
-                >
-                  <Pressable onPress={() => setDolmusSubType('all')} style={[styles.subTab, dolmusSubType === 'all' && styles.subTabActive]}>
-                    <Text style={[styles.subTabText, dolmusSubType === 'all' && styles.subTabTextActive]}>Tümü</Text>
-                  </Pressable>
-                  <Pressable onPress={() => setDolmusSubType('P')} style={[styles.subTab, dolmusSubType === 'P' && { backgroundColor: '#1E3A8A' }]}>
-                    <Text style={[styles.subTabText, dolmusSubType === 'P' && styles.subTabTextActive]}>P - Postane</Text>
-                  </Pressable>
-                  <Pressable onPress={() => setDolmusSubType('T')} style={[styles.subTab, dolmusSubType === 'T' && { backgroundColor: '#2563EB' }]}>
-                    <Text style={[styles.subTabText, dolmusSubType === 'T' && styles.subTabTextActive]}>T - Tanjant</Text>
-                  </Pressable>
-                  <Pressable onPress={() => setDolmusSubType('M')} style={[styles.subTab, dolmusSubType === 'M' && { backgroundColor: '#38BDF8' }]}>
-                    <Text style={[styles.subTabText, dolmusSubType === 'M' && styles.subTabTextActive]}>M - Moloz</Text>
-                  </Pressable>
-                </ScrollView>
-              )}
-
-              {selectedCategories.includes('dolmus') && (
-                <View style={styles.dolmusSearchContainer}>
-                  <Ionicons name="search" size={16} color="#1E3A8A" style={styles.dolmusSearchIcon} />
-                  <TextInput
-                    style={[styles.dolmusSearchInput, { outlineStyle: 'none', outlineWidth: 0 } as any]}
-                    placeholder="Gitmek istediğiniz durağı yazın (Örn: Boztepe)..."
-                    placeholderTextColor="rgba(59, 130, 246, 0.5)"
-                    value={dolmusSearchQuery}
-                    onChangeText={setDolmusSearchQuery}
-                    autoCapitalize="none"
-                  />
-                  {dolmusSearchQuery.length > 0 && (
-                    <Pressable onPress={() => setDolmusSearchQuery('')} style={styles.dolmusSearchClear}>
-                      <Ionicons name="close-circle" size={16} color="#1E3A8A" />
-                    </Pressable>
-                  )}
-                </View>
-              )}
-
-              {selectedCategories.includes('dolmus') && (
-                <ScrollView
-                  horizontal
-                  showsHorizontalScrollIndicator={false}
-                  contentContainerStyle={styles.stopChipsContainer}
-                >
-                  {MAP_POINTS.filter(p => {
-                    if (p.categoryKey !== 'dolmus') return false;
-                    if (dolmusSubType === 'P' && !p.key.startsWith('p-')) return false;
-                    if (dolmusSubType === 'T' && !p.key.startsWith('t-')) return false;
-                    if (dolmusSubType === 'M' && !p.key.startsWith('moloz-')) return false;
-                    if (dolmusSearchQuery.trim() !== '') {
-                      const toLowerTR = (str: string) => str.replace(/I/g, 'ı').replace(/İ/g, 'i').toLowerCase();
-                      const query = toLowerTR(dolmusSearchQuery.trim());
-                      return toLowerTR(p.title).includes(query);
-                    }
-                    return true;
-                  }).map((stop) => {
-                    const isStopSelected = selectedDolmusLines.includes(stop.key);
-                    let stopColor = '#3B82F6';
-                    if (stop.key.startsWith('p-')) stopColor = '#1E3A8A';
-                    else if (stop.key.startsWith('t-')) stopColor = '#2563EB';
-                    else if (stop.key.startsWith('moloz-')) stopColor = '#38BDF8';
-
-                    return (
-                      <Pressable
-                        key={stop.key}
-                        onPress={() => toggleDolmusLineSelection(stop.key)}
-                        style={[
-                          styles.stopChip,
-                          isStopSelected && { backgroundColor: stopColor, borderColor: stopColor },
-                          { opacity: selectedDolmusLines.length > 0 && !isStopSelected ? 0.5 : 1.0 }
-                        ]}
-                      >
-                        <Ionicons
-                          name="bus-outline"
-                          size={12}
-                          color={isStopSelected ? '#FFFFFF' : stopColor}
-                        />
-                        <Text style={[
-                          styles.stopChipText,
-                          isStopSelected && styles.stopChipTextSelected,
-                          !isStopSelected && { color: stopColor }
-                        ]}>
-                          {stop.title.replace('Postane - ', 'P - ').replace('Tanjant - ', 'T - ').replace('Moloz - ', 'M - ')}
-                        </Text>
-                      </Pressable>
-                    );
-                  })}
-                </ScrollView>
-              )}
             </View>
 
-            <View style={styles.infoBox}>
-              <Ionicons name="information-circle-outline" size={20} color="#0284C7" style={{ marginRight: 8, marginTop: 2 }} />
-              <Text style={styles.infoText}>
-                Dolmuş hatlarını da harita üzerinde görmek isterseniz lütfen aşağıdaki ikinci barda ilgili butona tıklayarak aktifleştiriniz.
-              </Text>
-            </View>
-
-            <View style={[styles.legendContainer, { flexDirection: 'column', alignItems: 'stretch', paddingVertical: 10 }]}>
+            <View style={[styles.legendContainer, { flexDirection: 'column', alignItems: 'stretch', paddingVertical: 10, marginTop: 12 }]}>
               <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
                 <Pressable
                   accessibilityRole="button"
@@ -1320,28 +1141,6 @@ export function HomeScreen() {
                   <Text style={styles.legendText}>Müze</Text>
                 </Pressable>
               </View>
-            </View>
-
-            <View style={styles.extraLayersHeader}>
-              <Ionicons name="layers-outline" size={16} color="#4B5563" style={{ marginRight: 6 }} />
-              <Text style={styles.extraLayersHeaderText}>Bunları da haritada göster:</Text>
-            </View>
-
-            <View style={[styles.legendContainer, { marginBottom: 12, marginTop: 0, justifyContent: 'center' }]}>
-              <Pressable
-                accessibilityRole="button"
-                accessibilityLabel="Dolmuş Durakları Filtresi"
-                onPress={() => toggleCategory('dolmus')}
-                style={[
-                  styles.legendItem,
-                  { opacity: selectedCategories.includes('dolmus') ? 1.0 : 0.4, justifyContent: 'center' }
-                ]}
-              >
-                <View style={[styles.legendDot, { backgroundColor: CATEGORY_STYLES.dolmus.color }]}>
-                  <Ionicons name={CATEGORY_STYLES.dolmus.icon as any} size={8.5} color="#FFF" />
-                </View>
-                <Text style={styles.legendText}>Dolmuş</Text>
-              </Pressable>
             </View>
           </View>
 

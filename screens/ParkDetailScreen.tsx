@@ -136,53 +136,6 @@ export function ParkDetailScreen({
 
         <View style={[styles.infoCard, cardShadow]}>
           <View style={styles.sectionHeader}>
-            <View
-              style={[styles.sectionHeaderIcon, styles.sectionHeaderIconStops]}
-            >
-              <Ionicons
-                name="navigate-outline"
-                size={18}
-                color={colors.primary}
-              />
-            </View>
-            <Text style={styles.sectionHeaderTitle}>Nasıl Gidilir?</Text>
-          </View>
-
-          {park.key === 'en-mutlu-koy' ? (
-            <View style={[styles.howBlock, { flexDirection: 'row', alignItems: 'center', gap: 10, marginTop: 8, paddingVertical: 4 }]}>
-              <Ionicons name="car-outline" size={24} color="#D97706" />
-              <Text style={{ fontSize: 13, fontWeight: '700', color: '#B45309', flex: 1 }}>
-                Özel araçla gidilmesi tavsiye edilir.
-              </Text>
-            </View>
-          ) : (
-            <View style={styles.howBlock}>
-              <Text style={styles.howTitle}>Dolmuş</Text>
-              <Text style={styles.howText}>{park.transport.dolmusText}</Text>
-              <Pressable
-                accessibilityRole="button"
-                accessibilityLabel="Haritada Gör"
-                onPress={() =>
-                  navigation.navigate('Home')
-                }
-                style={({ pressed }) => [
-                  styles.secondaryBtn,
-                  pressed && { opacity: 0.92 },
-                ]}
-              >
-                <Text style={styles.secondaryBtnText}>Haritada Gör</Text>
-                <Ionicons
-                  name="chevron-forward"
-                  size={18}
-                  color={colors.secondary}
-                />
-              </Pressable>
-            </View>
-          )}
-        </View>
-
-        <View style={[styles.infoCard, cardShadow]}>
-          <View style={styles.sectionHeader}>
             <View style={[styles.sectionHeaderIcon, styles.sectionHeaderIconStops]}>
               <Ionicons
                 name="information-circle-outline"

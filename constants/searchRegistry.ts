@@ -36,15 +36,7 @@ export function normalizeString(str: string): string {
 }
 
 const TRANSPORT_ITEMS: SearchItem[] = [
-  {
-    key: 'dolmus',
-    title: 'Dolmuş Durakları',
-    category: 'Ulaşım',
-    description: 'Kısa mesafe ve merkez çevresi için hızlı paylaşımlı ulaşım ve harita durakları.',
-    tags: ['ulasim', 'dolmus', 'minibus', 'tasima', 'durak'],
-    tab: 'Home',
-    routeParams: {},
-  },
+
   {
     key: 'havalimani',
     title: 'Havalimanı',
